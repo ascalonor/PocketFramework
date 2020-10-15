@@ -1,12 +1,21 @@
 import XCTest
+import SwiftUI
+
 @testable import PocketFramework
 
 final class PocketFrameworkTests: XCTestCase {
+    @State var text:String
+    
+    public init(text:String) {
+        self.text = text
+        super.init()
+    }
+    
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(PocketFramework().text, "Hello, World!")
+
+        var body: some View {
+            PocketFramework.MainTextField(placeholder:"Testing", text:$text)
+        }
     }
 
     static var allTests = [
