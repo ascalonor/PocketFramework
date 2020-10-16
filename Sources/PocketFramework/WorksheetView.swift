@@ -20,15 +20,17 @@ extension PocketFramework {
         ]
         
         @State var trialBalanceData: [TrialBalanceDataRow]
+        @State private var totalDebit:Decimal
+        @State private var totalCredit:Decimal
         
         public init(data:[TrialBalanceDataRow]) {
             self._trialBalanceData  = State(initialValue: data)
+            self._totalDebit = State(initialValue: 0.0)
+            self._totalCredit = State(initialValue: 0.0)
         }
         
         public var body: some View {
-            var totalDebit:Decimal = 0.0
-            var totalCredit:Decimal = 0.0
-            
+
             VStack(spacing: 0) {
                 LazyVGrid(columns: worksheetHeaderColumns) {
                     Text("ROB SINCLAIR's HIGHLIGHT GRAPHIC SERVICES")
@@ -40,8 +42,8 @@ extension PocketFramework {
                 ScrollView {
                     VStack(spacing:3) {
                          ForEach(trialBalanceData, id: \.self) { row -> AnyView in
-                            totalDebit += row.TrialBalanceDebit
-                            totalCredit += row.TrialBalanceCredit
+                            self._totalDebit.wrappedValue += row.TrialBalanceDebit
+                            self._totalCredit.wrappedValue += row.TrialBalanceCredit
                             return AnyView (VStack(spacing:3) {
                                 PocketFramework.TrialBalanceRowView(rowData: row)
                                 Divider()
