@@ -48,8 +48,8 @@ extension PocketFramework {
                                     .padding(.top, 4.0)
                             })
                          }
+                        PocketFramework.TrialBalanceTotalsRowView(debit:totalDebit, credit:totalCredit)
                     }
-                    PocketFramework.TrialBalanceTotalsRowView(debit:totalDebit, credit:totalCredit)
                 }
             }
         }
