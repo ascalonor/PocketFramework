@@ -9,7 +9,7 @@ import SwiftUI
 
 extension PocketFramework {
     public struct NumericCellView: View {
-        var text:String
+        @State var text:String
         
         public var body: some View {
             GeometryReader { reader in
