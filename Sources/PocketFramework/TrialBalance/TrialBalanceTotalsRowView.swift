@@ -17,7 +17,8 @@ extension PocketFramework {
             //self._credit = State(initialValue: credit)
             self._debit = debit
             self._credit = credit
-            print(debit)
+            print("debit \(debit.wrappedValue)")
+            print("credit \(credit.wrappedValue)")
         }
         
         private var rowDefinition = [

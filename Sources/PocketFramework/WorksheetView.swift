@@ -20,17 +20,17 @@ extension PocketFramework {
         ]
         
         @State var trialBalanceData: [TrialBalanceDataRow]
-        @State private var totalDebit:Decimal
-        @State private var totalCredit:Decimal
+        @State private var totalDebit:Decimal = 0
+        @State private var totalCredit:Decimal = 0
         
         public init(data:[TrialBalanceDataRow]) {
             self._trialBalanceData  = State(initialValue: data)
-            self._totalDebit = State(initialValue: 0.0)
-            self._totalCredit = State(initialValue: 0.0)
+            //self.totalDebit = 0
+            //self.totalCredit = 0
             
             for row in trialBalanceData {
-                self._totalDebit.wrappedValue += row.TrialBalanceDebit
-                self._totalCredit.wrappedValue += row.TrialBalanceCredit
+                self.totalDebit += row.TrialBalanceDebit
+                self.totalCredit += row.TrialBalanceCredit
             }
         }
         
