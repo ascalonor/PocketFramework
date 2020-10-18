@@ -27,6 +27,11 @@ extension PocketFramework {
             self._trialBalanceData  = State(initialValue: data)
             self._totalDebit = State(initialValue: 0.0)
             self._totalCredit = State(initialValue: 0.0)
+            
+            for row in trialBalanceData {
+                self._totalDebit.wrappedValue += row.TrialBalanceDebit
+                self._totalCredit.wrappedValue += row.TrialBalanceCredit
+            }
         }
         
         public var body: some View {
