@@ -27,8 +27,8 @@ extension PocketFramework {
             self._trialBalanceData  = State(initialValue: data)
             
             for row in trialBalanceData {
-                self.totalDebit += row.TrialBalanceDebit
-                self.totalCredit += row.TrialBalanceCredit
+                self._totalDebit.wrappedValue += row.TrialBalanceDebit
+                self._totalCredit.wrappedValue += row.TrialBalanceCredit
             }
         }
         
