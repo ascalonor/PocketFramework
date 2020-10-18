@@ -9,12 +9,14 @@ import SwiftUI
 
 extension PocketFramework {
     public struct TrialBalanceTotalsRowView: View {
-        @State var debit:Decimal
-        @State var credit:Decimal
+        @Binding var debit:Decimal
+        @Binding var credit:Decimal
         
-        public init(debit:Decimal, credit:Decimal) {
-            self._debit = State(initialValue: debit)
-            self._credit = State(initialValue: credit)
+        public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
+            //self._debit = State(initialValue: debit)
+            //self._credit = State(initialValue: credit)
+            self._debit = debit
+            self._credit = credit
             print(debit)
         }
         
@@ -30,8 +32,8 @@ extension PocketFramework {
             LazyVGrid(columns:rowDefinition)  {
                 PocketFramework.ColumnSpacer()
                 PocketFramework.TextCellView(text:"  Totals")
-                PocketFramework.NumericCellView(text:formatToCurrency(decValue: debit))
-                PocketFramework.NumericCellView(text:formatToCurrency(decValue: credit))
+                PocketFramework.NumericCellView(text:formatToCurrency(decValue: $debit.wrappedValue))
+                PocketFramework.NumericCellView(text:formatToCurrency(decValue: $credit.wrappedValue))
             }
         }
         public func formatToCurrency(decValue:Decimal) -> String {
@@ -44,8 +46,10 @@ extension PocketFramework {
     }
 }
 
-struct TrialBalanceTotalsRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        PocketFramework.TrialBalanceTotalsRowView(debit:1000, credit: 2000)
-    }
-}
+//struct TrialBalanceTotalsRowView_Previews: PreviewProvider {
+//    @State static var demoDebit = 1000
+//    @State static var demoCredit = 2000
+//    static var previews: some View {
+//        PocketFramework.TrialBalanceTotalsRowView(debit:demoDebit, credit: demoCredit)
+//    }
+//}

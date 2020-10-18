@@ -46,22 +46,19 @@ extension PocketFramework {
                 }
                 ScrollView {
                     VStack(spacing:3) {
-                         ForEach(trialBalanceData, id: \.self) { row -> AnyView in
-
-                            return AnyView (VStack(spacing:3) {
+                         ForEach(trialBalanceData, id: \.self) { row in
                                 PocketFramework.TrialBalanceRowView(rowData: row)
                                 Divider()
                                     .padding(.top, 4.0)
-                            })
                          }
-                        PocketFramework.TrialBalanceTotalsRowView(debit:totalDebit, credit:totalCredit)
+                        PocketFramework.TrialBalanceTotalsRowView(debit: $totalDebit, credit:$totalCredit)
                     }
                 }
             }.onAppear() {
-                for row in trialBalanceData {
-                    self._totalDebit.wrappedValue += row.TrialBalanceDebit
-                    self._totalCredit.wrappedValue += row.TrialBalanceCredit
-                }
+//                for row in trialBalanceData {
+//                    self._totalDebit.wrappedValue += row.TrialBalanceDebit
+//                    self._totalCredit.wrappedValue += row.TrialBalanceCredit
+//                }
             }
         }
     }
