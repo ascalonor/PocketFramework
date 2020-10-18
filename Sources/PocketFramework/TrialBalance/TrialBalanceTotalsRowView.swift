@@ -9,16 +9,16 @@ import SwiftUI
 
 extension PocketFramework {
     public struct TrialBalanceTotalsRowView: View {
-        @Binding var debit:Decimal
-        @Binding var credit:Decimal
+        @Binding public var totalDebit:Decimal
+        @Binding public var totalCredit:Decimal
         
         public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
             //self._debit = State(initialValue: debit)
             //self._credit = State(initialValue: credit)
-            self._debit = debit
-            self._credit = credit
-            print("debit \(debit.wrappedValue)")
-            print("credit \(credit.wrappedValue)")
+            self._totalDebit = debit
+            self._totalCredit = credit
+            print("debit \(totalDebit)")
+            print("credit \(totalCredit)")
         }
         
         private var rowDefinition = [
@@ -33,8 +33,8 @@ extension PocketFramework {
             LazyVGrid(columns:rowDefinition)  {
                 PocketFramework.ColumnSpacer()
                 PocketFramework.TextCellView(text:"  Totals")
-                PocketFramework.NumericCellView(text:formatToCurrency(decValue: $debit.wrappedValue))
-                PocketFramework.NumericCellView(text:formatToCurrency(decValue: $credit.wrappedValue))
+                PocketFramework.NumericCellView(text:formatToCurrency(decValue: $totalDebit.wrappedValue))
+                PocketFramework.NumericCellView(text:formatToCurrency(decValue: $totalCredit.wrappedValue))
             }
         }
         public func formatToCurrency(decValue:Decimal) -> String {
