@@ -23,9 +23,9 @@ extension PocketFramework {
             self._creditEntry = credit
             
             self.decimalFormatter = NumberFormatter()
-            decimalFormatter.alwaysShowsDecimalSeparator = false
-            decimalFormatter.numberStyle = .decimal
-            decimalFormatter.maximumFractionDigits = 2
+            //decimalFormatter.alwaysShowsDecimalSeparator = false
+            //decimalFormatter.numberStyle = .decimal
+            //decimalFormatter.maximumFractionDigits = 2
             
             self._debitText = State(initialValue: decimalFormatter.string(from: debit.wrappedValue as NSNumber)!)
             self._creditText = State(initialValue: decimalFormatter.string(from: credit.wrappedValue as NSNumber)!)
@@ -39,7 +39,7 @@ extension PocketFramework {
                         TextField("Enter Debit",text:$debitText)
                             .keyboardType(.decimalPad)
                             .onChange(of: debitText, perform: { value in
-                                self._debitEntry.wrappedValue = Decimal(string:value) ?? 0.0
+                                print(stringToDecimal(stringValue: value))
                                 print("Debit Value: \(debitEntry)")
 
                             })
@@ -49,7 +49,7 @@ extension PocketFramework {
                         TextField("Enter Credit", text:$creditText)
                             .keyboardType(.decimalPad)
                             .onChange(of: creditText, perform: { value in
-                                self._creditEntry.wrappedValue = Decimal(string:value) ?? 0.0
+                                print(stringToDecimal(stringValue: value))
                                 print("Credit Value: \(creditEntry)")
                             })
                     }
@@ -83,6 +83,14 @@ extension PocketFramework {
             //formatter.usesGroupingSeparator = true
             //formatter.maximumFractionDigits = 2
             return formatter.string(from: decValue as NSNumber)!
+        }
+        public func stringToDecimal(stringValue:String) -> Decimal {
+            let decValue = Decimal(string: stringValue)
+            print("Converted: \(String(describing: decValue))")
+            if decValue == nil {
+                return 0
+            }
+            return decValue!
         }
     }
 }
