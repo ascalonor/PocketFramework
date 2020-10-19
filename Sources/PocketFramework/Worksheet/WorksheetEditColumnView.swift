@@ -39,8 +39,10 @@ extension PocketFramework {
                         TextField("Enter Debit",text:$debitText)
                             .keyboardType(.decimalPad)
                             .onChange(of: debitText, perform: { value in
-                                //print("Debit Value: \(value)")
-                                self.debitEntry = NSDecimalNumber(string: value) as Decimal
+                                let decValue = NSDecimalNumber(string:value)
+                                self.debitEntry = decValue.decimalValue
+                                print("Debit Value: \(debitEntry)")
+
                             })
                     }
                     VStack(alignment:.leading) {
@@ -48,15 +50,16 @@ extension PocketFramework {
                         TextField("Enter Credit", text:$creditText)
                             .keyboardType(.decimalPad)
                             .onChange(of: creditText, perform: { value in
-                                //print("Credit Value: \(value)")
-                                self.creditEntry = NSDecimalNumber(string: value) as Decimal
+                                let decValue = NSDecimalNumber(string:value)
+                                self.creditEntry = decValue.decimalValue
+                                print("Credit Value: \(creditEntry)")
                             })
                     }
                 }
                 Section {
                     HStack {
                         Button(action: {
-                            print($debitEntry.wrappedValue)
+                            print($debitEntry)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Save")
