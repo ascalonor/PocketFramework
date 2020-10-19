@@ -14,10 +14,16 @@ extension PocketFramework {
         
         @Binding var debitEntry:Decimal
         @Binding var creditEntry:Decimal
+        private var decimalFormatter:NumberFormatter
         
         public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
             self._debitEntry = debit
             self._creditEntry = credit
+            
+            self.decimalFormatter = NumberFormatter()
+            decimalFormatter.alwaysShowsDecimalSeparator = false
+            decimalFormatter.numberStyle = .decimal
+            decimalFormatter.maximumFractionDigits = 2
         }
         
         public var body: some View {
@@ -25,7 +31,7 @@ extension PocketFramework {
                 Section(header: Text("Edit Adjustments")){
                     VStack(alignment: .leading) {
                         Text("Debit")
-                        TextField("Enter Debit",value:$debitEntry, formatter:NumberFormatter())
+                        TextField("Enter Debit",value:$debitEntry, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                             .onChange(of: debitEntry, perform: { value in
                                 print("Debit Value: \(value)")
@@ -34,7 +40,7 @@ extension PocketFramework {
                     }
                     VStack(alignment:.leading) {
                         Text("Credit")
-                        TextField("Enter Credit", value:$creditEntry, formatter:NumberFormatter())
+                        TextField("Enter Credit", value:$creditEntry, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                             .onChange(of: creditEntry, perform: { value in
                                 print("Credit Value: \(value)")
@@ -58,6 +64,9 @@ extension PocketFramework {
                         }
                     }
                 }
+            }
+            .onAppear() {
+                
             }
         }
         public func formatToString(decValue:Decimal) -> String {
