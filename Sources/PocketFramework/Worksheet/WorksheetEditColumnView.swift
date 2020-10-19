@@ -59,9 +59,9 @@ extension PocketFramework {
                 Section {
                     HStack {
                         Button(action: {
-                            debitEntry = stringToDecimal(stringValue: debitText)
-                            creditEntry = stringToDecimal(stringValue: creditText)
-                            print($debitEntry)
+                            self._debitEntry.wrappedValue = stringToDecimal(stringValue: debitText)
+                            self._creditEntry.wrappedValue = stringToDecimal(stringValue: creditText)
+                            print(debitEntry)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Save")
