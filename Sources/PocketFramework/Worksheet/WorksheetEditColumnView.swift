@@ -35,7 +35,8 @@ extension PocketFramework {
                             .keyboardType(.decimalPad)
                             .onChange(of: debitEntry, perform: { value in
                                 print("Debit Value: \(value)")
-                                self.debitEntry = value
+                                
+                                self.debitEntry = NSDecimalNumber(decimal: value) as Decimal
                             })
                     }
                     VStack(alignment:.leading) {
@@ -44,7 +45,7 @@ extension PocketFramework {
                             .keyboardType(.decimalPad)
                             .onChange(of: creditEntry, perform: { value in
                                 print("Credit Value: \(value)")
-                                self.creditEntry = value
+                                self.creditEntry = NSDecimalNumber(decimal: value) as Decimal
                             })
                     }
                 }
