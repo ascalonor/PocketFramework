@@ -37,7 +37,7 @@ extension PocketFramework {
                 Section(header: Text("Edit Adjustments")){
                     VStack(alignment: .leading) {
                         Text("Debit")
-                        TextField("Enter Debit",value:$debitText, formatter:decimalFormatter)
+                        TextField("Enter Debit",value:$debitEntry, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                     }
                     VStack(alignment:.leading) {
