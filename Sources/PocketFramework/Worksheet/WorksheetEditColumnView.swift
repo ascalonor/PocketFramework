@@ -12,17 +12,21 @@ extension PocketFramework {
     public struct WorksheetEditColumnView: View {
         @Environment(\.presentationMode) var presentationMode
         
-        @State var debitEntry:Decimal
-        @State var creditEntry:Decimal
+        @Binding var debitEntry:Decimal
+        @Binding var creditEntry:Decimal
         private var decimalFormatter:NumberFormatter
         
         @State private var debitText:String
         @State private var creditText:String
         public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
-            self._debitEntry = State(initialValue: debit.wrappedValue)
-            self._creditEntry = State(initialValue: credit.wrappedValue)
+            self._debitEntry = debit
+            self._creditEntry = credit
             
             self.decimalFormatter = NumberFormatter()
+            decimalFormatter.numberStyle = .decimal
+            decimalFormatter.alwaysShowsDecimalSeparator = false
+            decimalFormatter.allowsFloats = false
+            decimalFormatter.maximumFractionDigits = 2
             
             self._debitText = State(initialValue: decimalFormatter.string(from: debit.wrappedValue as NSNumber)!)
             self._creditText = State(initialValue: decimalFormatter.string(from: credit.wrappedValue as NSNumber)!)
@@ -33,7 +37,7 @@ extension PocketFramework {
                 Section(header: Text("Edit Adjustments")){
                     VStack(alignment: .leading) {
                         Text("Debit")
-                        TextField("Enter Debit",text:$debitText)
+                        TextField("Enter Debit",value:$debitText, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                     }
                     VStack(alignment:.leading) {
@@ -45,7 +49,7 @@ extension PocketFramework {
                 Section {
                     HStack {
                         Button(action: {
-                            self.debitEntry = stringToDecimal(stringValue: debitText)
+                            //self.debitEntry = stringToDecimal(stringValue: debitText)
                             self.creditEntry = stringToDecimal(stringValue: creditText)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
