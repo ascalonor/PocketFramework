@@ -16,6 +16,8 @@ extension PocketFramework {
         @Binding var creditEntry:Decimal
         private var decimalFormatter:NumberFormatter
         
+        @State private var debitText:String
+        @State private var creditText:String
         public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
             self._debitEntry = debit
             self._creditEntry = credit
@@ -24,6 +26,9 @@ extension PocketFramework {
             decimalFormatter.alwaysShowsDecimalSeparator = false
             decimalFormatter.numberStyle = .decimal
             decimalFormatter.maximumFractionDigits = 2
+            
+            self._debitText = State(initialValue: decimalFormatter.string(from: debit.wrappedValue as NSNumber)!)
+            self._creditText = State(initialValue: decimalFormatter.string(from: credit.wrappedValue as NSNumber)!)
         }
         
         public var body: some View {
@@ -31,20 +36,20 @@ extension PocketFramework {
                 Section(header: Text("Edit Adjustments")){
                     VStack(alignment: .leading) {
                         Text("Debit")
-                        TextField("Enter Debit",value:$debitEntry, formatter:decimalFormatter)
+                        TextField("Enter Debit",value:$debitText, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
-                            .onChange(of: debitEntry, perform: { value in
+                            .onChange(of: debitText, perform: { value in
                                 //print("Debit Value: \(value)")
-                                self.debitEntry = NSDecimalNumber(decimal: value) as Decimal
+                                self.debitEntry = NSDecimalNumber(string: value) as Decimal
                             })
                     }
                     VStack(alignment:.leading) {
                         Text("Credit")
-                        TextField("Enter Credit", value:$creditEntry, formatter:decimalFormatter)
+                        TextField("Enter Credit", value:$creditText, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
-                            .onChange(of: creditEntry, perform: { value in
+                            .onChange(of: creditText, perform: { value in
                                 //print("Credit Value: \(value)")
-                                self.creditEntry = NSDecimalNumber(decimal: value) as Decimal
+                                self.creditEntry = NSDecimalNumber(string: value) as Decimal
                             })
                     }
                 }
