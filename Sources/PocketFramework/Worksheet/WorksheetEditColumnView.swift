@@ -12,13 +12,13 @@ extension PocketFramework {
     public struct WorksheetEditColumnView: View {
         @Environment(\.presentationMode) var presentationMode
         
-        @Binding var debitEntry:Decimal
-        @Binding var creditEntry:Decimal
+        @Binding var debitEntry:Double
+        @Binding var creditEntry:Double
         private var decimalFormatter:NumberFormatter
         
         @State private var debitText:String
         @State private var creditText:String
-        public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
+        public init(debit:Binding<Double>, credit:Binding<Double>) {
             self._debitEntry = debit
             self._creditEntry = credit
             
@@ -50,7 +50,7 @@ extension PocketFramework {
                     HStack {
                         Button(action: {
                             //self.debitEntry = stringToDecimal(stringValue: debitText)
-                            self.creditEntry = stringToDecimal(stringValue: creditText)
+                            //self.creditEntry = stringToDecimal(stringValue: creditText)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Save")
@@ -68,26 +68,26 @@ extension PocketFramework {
                 
             }
         }
-        public func formatToString(decValue:Decimal) -> String {
+        public func formatToString(decValue:Double) -> String {
             let formatter = NumberFormatter()
             //formatter.numberStyle = .currency
             //formatter.usesGroupingSeparator = true
             //formatter.maximumFractionDigits = 2
             return formatter.string(from: decValue as NSNumber)!
         }
-        public func stringToDecimal(stringValue:String) -> Decimal {
-            let decValue = Decimal(string: stringValue)
-            if decValue == nil {
-                return 0
-            }
-            return decValue!
-        }
+//        public func stringToDecimal(stringValue:String) -> Decimal {
+//            let decValue = Double(string: stringValue)
+//            if decValue == nil {
+//                return 0
+//            }
+//            return decValue!
+//        }
     }
 }
 
 struct WorksheetEditColumnView_Previews: PreviewProvider {
-    @State static var demoDebit:Decimal = 1000.00
-    @State static var demoCredit:Decimal = 500.00
+    @State static var demoDebit:Double = 1000.00
+    @State static var demoCredit:Double = 500.00
     
     static var previews: some View {
         PocketFramework.WorksheetEditColumnView(debit: $demoDebit, credit: $demoCredit)

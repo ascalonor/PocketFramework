@@ -9,10 +9,10 @@ import SwiftUI
 
 extension PocketFramework {
     public struct TrialBalanceTotalsRowView: View {
-        @Binding public var totalDebit:Decimal
-        @Binding public var totalCredit:Decimal
+        @Binding public var totalDebit:Double
+        @Binding public var totalCredit:Double
         
-        public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
+        public init(debit:Binding<Double>, credit:Binding<Double>) {
             //self._debit = State(initialValue: debit)
             //self._credit = State(initialValue: credit)
             self._totalDebit = debit
@@ -37,7 +37,7 @@ extension PocketFramework {
                 PocketFramework.NumericCellView(text:formatToCurrency(decValue: $totalCredit.wrappedValue))
             }
         }
-        public func formatToCurrency(decValue:Decimal) -> String {
+        public func formatToCurrency(decValue:Double) -> String {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
             formatter.usesGroupingSeparator = true

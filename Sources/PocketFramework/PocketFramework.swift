@@ -5,16 +5,16 @@ public struct PocketFramework {
     public struct TrialBalanceDataRow : Hashable {
         public var Name:String
         public var AccountId:UUID
-        public var TrialBalanceDebit:Decimal
-        public var TrialBalanceCredit:Decimal
-        public var AdjustmentsDebit:Decimal
-        public var AdjustmentsCredit:Decimal
-        public var AdjustedTrialBalanceDebit:Decimal
-        public var AdjustedTrialBalanceCredit:Decimal
-        public var IncomeStatementDebit:Decimal
-        public var IncomeStatementCredit:Decimal
-        public var BalanceSheetDebit:Decimal
-        public var BalanceSheetCredit:Decimal
+        public var TrialBalanceDebit:Double
+        public var TrialBalanceCredit:Double
+        public var AdjustmentsDebit:Double
+        public var AdjustmentsCredit:Double
+        public var AdjustedTrialBalanceDebit:Double
+        public var AdjustedTrialBalanceCredit:Double
+        public var IncomeStatementDebit:Double
+        public var IncomeStatementCredit:Double
+        public var BalanceSheetDebit:Double
+        public var BalanceSheetCredit:Double
         
         public init() {
             Name = ""
@@ -31,7 +31,7 @@ public struct PocketFramework {
             BalanceSheetCredit = 0.0
         }
         
-        public init(name:String, accountId:UUID, trialBalanceDebit:Decimal, trialBalanceCredit:Decimal) {
+        public init(name:String, accountId:UUID, trialBalanceDebit:Double, trialBalanceCredit:Double) {
             self.init()
             Name = name
             AccountId = accountId

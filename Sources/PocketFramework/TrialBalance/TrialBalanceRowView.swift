@@ -32,7 +32,7 @@ extension PocketFramework {
                 PocketFramework.NumericCellView(text:formatToCurrency(decValue: rowData.TrialBalanceCredit))
             }
         }
-        public func formatToCurrency(decValue:Decimal) -> String {
+        public func formatToCurrency(decValue:Double) -> String {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
             formatter.usesGroupingSeparator = true
