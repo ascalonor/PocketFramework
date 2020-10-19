@@ -22,8 +22,8 @@ extension PocketFramework {
         
         public var body: some View {
             Form {
-                Section(header: Text("Edit")){
-                    HStack {
+                Section(header: Text("Edit Adjustments")){
+                    VStack(alignment: .leading) {
                         Text("Debit")
                         TextField("Enter Debit",value:$debitEntry, formatter:NumberFormatter())
                             .keyboardType(.decimalPad)
@@ -32,7 +32,7 @@ extension PocketFramework {
                                 self.debitEntry = value
                             })
                     }
-                    HStack {
+                    VStack(alignment:.leading) {
                         Text("Credit")
                         TextField("Enter Credit", value:$creditEntry, formatter:NumberFormatter())
                             .keyboardType(.decimalPad)
@@ -58,7 +58,7 @@ extension PocketFramework {
                         }
                     }
                 }
-            }.navigationTitle("Edit Column")
+            }
         }
         public func formatToString(decValue:Decimal) -> String {
             let formatter = NumberFormatter()
