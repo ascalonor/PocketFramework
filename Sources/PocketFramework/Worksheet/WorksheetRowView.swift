@@ -56,8 +56,8 @@ extension PocketFramework {
                     Group {
                         PocketFramework.NumericCellView(text:formatToCurrency(decValue: rowData.BalanceSheetDebit))
                         PocketFramework.NumericCellView(text:formatToCurrency(decValue: rowData.BalanceSheetCredit))
-                    }.sheet(isPresented: $isAdjustmentsEdit) {
-                        PocketFramework.WorksheetEditColumnView(debit: $rowData.AdjustedTrialBalanceDebit, credit: $rowData.AdjustedTrialBalanceCredit)
+                    }.sheet(isPresented: $isAdjustmentsEdit, onDismiss: { handleUpdate() }) {
+                        PocketFramework.WorksheetEditColumnView(debit: $rowData.AdjustmentsDebit, credit: $rowData.AdjustmentsCredit)
                     }
                 }.onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
                     self.isAdjustmentsEdit.toggle()
@@ -70,6 +70,11 @@ extension PocketFramework {
             formatter.maximumFractionDigits = 2
             return formatter.string(from: decValue as NSNumber)!
         }
+        
+        public func handleUpdate() {
+            print("sheet closed")
+            print(rowData)
+        }
     }
 }
 
@@ -79,6 +84,7 @@ struct WorksheetRowView_Previews: PreviewProvider {
         demoRow.Name = "Cash"
         demoRow.TrialBalanceDebit = 6155
         demoRow.AdjustedTrialBalanceDebit = 50
+        demoRow.AdjustmentsDebit = 100
         return PocketFramework.WorksheetRowView(rowData: demoRow)
     }
 }
