@@ -34,8 +34,7 @@ extension PocketFramework {
                         TextField("Enter Debit",value:$debitEntry, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                             .onChange(of: debitEntry, perform: { value in
-                                print("Debit Value: \(value)")
-                                
+                                //print("Debit Value: \(value)")
                                 self.debitEntry = NSDecimalNumber(decimal: value) as Decimal
                             })
                     }
@@ -44,7 +43,7 @@ extension PocketFramework {
                         TextField("Enter Credit", value:$creditEntry, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                             .onChange(of: creditEntry, perform: { value in
-                                print("Credit Value: \(value)")
+                                //print("Credit Value: \(value)")
                                 self.creditEntry = NSDecimalNumber(decimal: value) as Decimal
                             })
                     }
