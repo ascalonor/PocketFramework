@@ -40,6 +40,7 @@ extension PocketFramework {
                             .keyboardType(.decimalPad)
                             .onChange(of: debitText, perform: { value in
                                 print(stringToDecimal(stringValue: value))
+                                debitEntry = stringToDecimal(stringValue: value)
                                 print("Debit Value: \(debitEntry)")
 
                             })
@@ -50,6 +51,7 @@ extension PocketFramework {
                             .keyboardType(.decimalPad)
                             .onChange(of: creditText, perform: { value in
                                 print(stringToDecimal(stringValue: value))
+                                creditEntry = stringToDecimal(stringValue: value)
                                 print("Credit Value: \(creditEntry)")
                             })
                     }
@@ -86,7 +88,6 @@ extension PocketFramework {
         }
         public func stringToDecimal(stringValue:String) -> Decimal {
             let decValue = Decimal(string: stringValue)
-            print("Converted: \(String(describing: decValue))")
             if decValue == nil {
                 return 0
             }
