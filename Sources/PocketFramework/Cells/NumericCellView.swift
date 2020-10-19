@@ -15,7 +15,7 @@ extension PocketFramework {
             GeometryReader { reader in
                 HStack( spacing:3) {
                     Spacer()
-                    Text(self.text)
+                    Text(text)
                     Rectangle().frame( minWidth:1, maxWidth: 1, minHeight: reader.size.height + 10)
                     Rectangle().frame( minWidth:1, maxWidth: 1, minHeight: reader.size.height + 10)
                 }

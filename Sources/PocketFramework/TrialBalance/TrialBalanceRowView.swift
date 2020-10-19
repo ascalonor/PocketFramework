@@ -10,10 +10,10 @@ import SwiftUI
 extension PocketFramework {
     
     public struct TrialBalanceRowView: View {
-        @State var rowData:TrialBalanceDataRow
+        @ObservedObject var rowData:TrialBalanceDataRow
         
         public init(rowData:TrialBalanceDataRow) {
-            self._rowData = State(initialValue: rowData)
+            self.rowData = rowData
         }
         
         private var rowDefinition = [

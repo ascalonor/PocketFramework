@@ -2,7 +2,7 @@ import SwiftUI
 
 public struct PocketFramework {
     
-    public class TrialBalanceDataRow : Hashable {
+    public class TrialBalanceDataRow : ObservableObject, Hashable {
         public var Name:String
         public var AccountId:UUID
         @Published public var TrialBalanceDebit:Double

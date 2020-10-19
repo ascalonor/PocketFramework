@@ -10,12 +10,12 @@ import Combine
 
 extension PocketFramework {
     public struct WorksheetRowView: View {
-        @State var rowData:TrialBalanceDataRow
+        @ObservedObject var rowData:TrialBalanceDataRow
         @State private var isAdjustmentsEdit = false
 
         
         public init(rowData:TrialBalanceDataRow) {
-            self._rowData = State(initialValue: rowData)
+            self.rowData = rowData
         }
         
         private var rowDefinition = [
