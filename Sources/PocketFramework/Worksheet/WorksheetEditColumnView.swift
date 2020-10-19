@@ -35,22 +35,11 @@ extension PocketFramework {
                         Text("Debit")
                         TextField("Enter Debit",text:$debitText)
                             .keyboardType(.decimalPad)
-                            .onChange(of: debitText, perform: { value in
-                                print(stringToDecimal(stringValue: value))
-                                debitEntry = stringToDecimal(stringValue: value)
-                                print("Debit Value: \(debitEntry)")
-
-                            })
                     }
                     VStack(alignment:.leading) {
                         Text("Credit")
                         TextField("Enter Credit", text:$creditText)
                             .keyboardType(.decimalPad)
-                            .onChange(of: creditText, perform: { value in
-                                print(stringToDecimal(stringValue: value))
-                                creditEntry = stringToDecimal(stringValue: value)
-                                print("Credit Value: \(creditEntry)")
-                            })
                     }
                 }
                 Section {
@@ -58,7 +47,6 @@ extension PocketFramework {
                         Button(action: {
                             self.debitEntry = stringToDecimal(stringValue: debitText)
                             self.creditEntry = stringToDecimal(stringValue: creditText)
-                            print(debitEntry)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Save")
