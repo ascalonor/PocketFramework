@@ -27,11 +27,19 @@ extension PocketFramework {
                         Text("Debit")
                         TextField("Enter Debit",value:$debitEntry, formatter:NumberFormatter())
                             .keyboardType(.decimalPad)
+                            .onChange(of: debitEntry, perform: { value in
+                                print("Debit Value: \(value)")
+                                self.debitEntry = value
+                            })
                     }
                     HStack {
                         Text("Credit")
                         TextField("Enter Credit", value:$creditEntry, formatter:NumberFormatter())
                             .keyboardType(.decimalPad)
+                            .onChange(of: creditEntry, perform: { value in
+                                print("Credit Value: \(value)")
+                                self.creditEntry = value
+                            })
                     }
                 }
                 Section {
