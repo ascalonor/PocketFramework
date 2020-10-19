@@ -12,20 +12,17 @@ extension PocketFramework {
     public struct WorksheetEditColumnView: View {
         @Environment(\.presentationMode) var presentationMode
         
-        @Binding var debitEntry:Decimal
-        @Binding var creditEntry:Decimal
+        @State var debitEntry:Decimal
+        @State var creditEntry:Decimal
         private var decimalFormatter:NumberFormatter
         
         @State private var debitText:String
         @State private var creditText:String
         public init(debit:Binding<Decimal>, credit:Binding<Decimal>) {
-            self._debitEntry = debit
-            self._creditEntry = credit
+            self._debitEntry = State(initialValue: debit.wrappedValue)
+            self._creditEntry = State(initialValue: credit.wrappedValue)
             
             self.decimalFormatter = NumberFormatter()
-            //decimalFormatter.alwaysShowsDecimalSeparator = false
-            //decimalFormatter.numberStyle = .decimal
-            //decimalFormatter.maximumFractionDigits = 2
             
             self._debitText = State(initialValue: decimalFormatter.string(from: debit.wrappedValue as NSNumber)!)
             self._creditText = State(initialValue: decimalFormatter.string(from: credit.wrappedValue as NSNumber)!)
@@ -59,8 +56,8 @@ extension PocketFramework {
                 Section {
                     HStack {
                         Button(action: {
-                            self._debitEntry.wrappedValue = stringToDecimal(stringValue: debitText)
-                            self._creditEntry.wrappedValue = stringToDecimal(stringValue: creditText)
+                            self.debitEntry = stringToDecimal(stringValue: debitText)
+                            self.creditEntry = stringToDecimal(stringValue: creditText)
                             print(debitEntry)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
