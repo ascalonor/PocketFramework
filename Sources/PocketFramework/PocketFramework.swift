@@ -2,19 +2,19 @@ import SwiftUI
 
 public struct PocketFramework {
     
-    public struct TrialBalanceDataRow : Hashable {
+    public class TrialBalanceDataRow : Hashable {
         public var Name:String
         public var AccountId:UUID
-        public var TrialBalanceDebit:Double
-        public var TrialBalanceCredit:Double
-        public var AdjustmentsDebit:Double
-        public var AdjustmentsCredit:Double
-        public var AdjustedTrialBalanceDebit:Double
-        public var AdjustedTrialBalanceCredit:Double
-        public var IncomeStatementDebit:Double
-        public var IncomeStatementCredit:Double
-        public var BalanceSheetDebit:Double
-        public var BalanceSheetCredit:Double
+        @Published public var TrialBalanceDebit:Double
+        @Published public var TrialBalanceCredit:Double
+        @Published public var AdjustmentsDebit:Double
+        @Published public var AdjustmentsCredit:Double
+        @Published public var AdjustedTrialBalanceDebit:Double
+        @Published public var AdjustedTrialBalanceCredit:Double
+        @Published public var IncomeStatementDebit:Double
+        @Published public var IncomeStatementCredit:Double
+        @Published public var BalanceSheetDebit:Double
+        @Published public var BalanceSheetCredit:Double
         
         public init() {
             Name = ""
@@ -31,7 +31,7 @@ public struct PocketFramework {
             BalanceSheetCredit = 0.0
         }
         
-        public init(name:String, accountId:UUID, trialBalanceDebit:Double, trialBalanceCredit:Double) {
+        public convenience init(name:String, accountId:UUID, trialBalanceDebit:Double, trialBalanceCredit:Double) {
             self.init()
             Name = name
             AccountId = accountId

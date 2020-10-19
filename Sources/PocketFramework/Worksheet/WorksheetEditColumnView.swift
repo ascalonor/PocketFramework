@@ -16,20 +16,17 @@ extension PocketFramework {
         @Binding var creditEntry:Double
         private var decimalFormatter:NumberFormatter
         
-        @State private var debitText:String
-        @State private var creditText:String
+        
         public init(debit:Binding<Double>, credit:Binding<Double>) {
             self._debitEntry = debit
             self._creditEntry = credit
             
             self.decimalFormatter = NumberFormatter()
+            self.decimalFormatter.isLenient = true
             decimalFormatter.numberStyle = .decimal
             decimalFormatter.alwaysShowsDecimalSeparator = false
-            decimalFormatter.allowsFloats = false
-            decimalFormatter.maximumFractionDigits = 2
-            
-            self._debitText = State(initialValue: decimalFormatter.string(from: debit.wrappedValue as NSNumber)!)
-            self._creditText = State(initialValue: decimalFormatter.string(from: credit.wrappedValue as NSNumber)!)
+            //decimalFormatter.alwaysShowsDecimalSeparator = false
+            //decimalFormatter.maximumFractionDigits = 2
         }
         
         public var body: some View {
@@ -42,15 +39,13 @@ extension PocketFramework {
                     }
                     VStack(alignment:.leading) {
                         Text("Credit")
-                        TextField("Enter Credit", text:$creditText)
+                        TextField("Enter Credit",value:$creditEntry, formatter:decimalFormatter)
                             .keyboardType(.decimalPad)
                     }
                 }
                 Section {
                     HStack {
                         Button(action: {
-                            //self.debitEntry = stringToDecimal(stringValue: debitText)
-                            //self.creditEntry = stringToDecimal(stringValue: creditText)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Save")
@@ -87,7 +82,7 @@ extension PocketFramework {
 
 struct WorksheetEditColumnView_Previews: PreviewProvider {
     @State static var demoDebit:Double = 1000.00
-    @State static var demoCredit:Double = 500.00
+    @State static var demoCredit:Double = 1500.00
     
     static var previews: some View {
         PocketFramework.WorksheetEditColumnView(debit: $demoDebit, credit: $demoCredit)

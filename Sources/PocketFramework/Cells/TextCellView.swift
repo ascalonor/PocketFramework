@@ -14,7 +14,7 @@ extension PocketFramework {
         public var body: some View {
             GeometryReader { reader in
                 HStack( spacing:3) {
-                    Text(self.text) .font(.body)
+                    Text(text) .font(.body)
                     Spacer()
                     Rectangle().frame( minWidth:1, maxWidth: 1, minHeight: reader.size.height + 10)
                     Rectangle().frame( minWidth:1, maxWidth: 1, minHeight: reader.size.height + 10)
@@ -26,9 +26,9 @@ extension PocketFramework {
 }
 
 struct TextCellView_Previews: PreviewProvider {
-    static var text:String = "Sample Data"
+    static var demoText:String = "Sample Data"
     
     static var previews: some View {
-        return PocketFramework.TextCellView(text:text).frame(minHeight:50, maxHeight: 50)
+        return PocketFramework.TextCellView(text:demoText).frame(minHeight:50, maxHeight: 50)
     }
 }
