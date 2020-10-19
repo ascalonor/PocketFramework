@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 extension PocketFramework {
     public struct WorksheetRowView: View {
