@@ -36,7 +36,7 @@ extension PocketFramework {
                 Section(header: Text("Edit Adjustments")){
                     VStack(alignment: .leading) {
                         Text("Debit")
-                        TextField("Enter Debit",value:$debitText, formatter:decimalFormatter)
+                        TextField("Enter Debit",text:$debitText)
                             .keyboardType(.decimalPad)
                             .onChange(of: debitText, perform: { value in
                                 //print("Debit Value: \(value)")
@@ -45,7 +45,7 @@ extension PocketFramework {
                     }
                     VStack(alignment:.leading) {
                         Text("Credit")
-                        TextField("Enter Credit", value:$creditText, formatter:decimalFormatter)
+                        TextField("Enter Credit", text:$creditText)
                             .keyboardType(.decimalPad)
                             .onChange(of: creditText, perform: { value in
                                 //print("Credit Value: \(value)")
