@@ -5,6 +5,8 @@ public struct PocketFramework {
     public class TrialBalanceDataRow : ObservableObject, Hashable {
         public var Name:String
         public var AccountId:UUID
+        public var AccountCategory:Int16
+        public var NormalBalance:String
         @Published public var TrialBalanceDebit:Double
         @Published public var TrialBalanceCredit:Double
         @Published public var AdjustmentsDebit:Double
@@ -15,10 +17,16 @@ public struct PocketFramework {
         @Published public var IncomeStatementCredit:Double
         @Published public var BalanceSheetDebit:Double
         @Published public var BalanceSheetCredit:Double
+        @Published public var IsOnTrialBalance:Bool
+        @Published public var IsOnIncomeStatement:Bool
+        @Published public var IsOnBalanceSheet:Bool
+        @Published public var IsAdjustment:Bool
         
         public init() {
             Name = ""
             AccountId = UUID()
+            AccountCategory = 999
+            NormalBalance = "D"
             TrialBalanceDebit = 0.0
             TrialBalanceCredit = 0.0
             AdjustmentsDebit = 0.0
@@ -29,6 +37,10 @@ public struct PocketFramework {
             IncomeStatementCredit = 0.0
             BalanceSheetDebit = 0.0
             BalanceSheetCredit = 0.0
+            IsOnTrialBalance = false
+            IsAdjustment = false
+            IsOnIncomeStatement = false
+            IsOnBalanceSheet = false
         }
         
         public convenience init(name:String, accountId:UUID, trialBalanceDebit:Double, trialBalanceCredit:Double) {
@@ -37,6 +49,19 @@ public struct PocketFramework {
             AccountId = accountId
             TrialBalanceDebit = trialBalanceDebit
             TrialBalanceCredit = trialBalanceCredit
+            IsOnTrialBalance = true
+        }
+        
+        public convenience init(name:String, accountId:UUID, adjustmentDebit:Double, adjustmentCredit:Double, onIncomeStatement:Bool, onBalanceSheet:Bool) {
+            self.init()
+            Name = name
+            AccountId = accountId
+            TrialBalanceDebit = adjustmentDebit
+            TrialBalanceCredit = adjustmentCredit
+            IsOnTrialBalance = false
+            IsOnIncomeStatement = onIncomeStatement
+            IsOnBalanceSheet = onBalanceSheet
+            IsAdjustment = true
         }
         
         public static func == (lbr:TrialBalanceDataRow, rbr:TrialBalanceDataRow) -> Bool {

@@ -73,15 +73,15 @@ extension PocketFramework {
         }
         
         public func handleUpdate() {
-            print("sheet closed")
-            print(rowData)
+            //print("sheet closed")
+            //print(rowData)
         }
     }
 }
 
 struct WorksheetRowView_Previews: PreviewProvider {
     static var previews: some View {
-        var demoRow = PocketFramework.TrialBalanceDataRow()
+        let demoRow = PocketFramework.TrialBalanceDataRow()
         demoRow.Name = "Cash"
         demoRow.TrialBalanceDebit = 6155
         demoRow.AdjustedTrialBalanceDebit = 50

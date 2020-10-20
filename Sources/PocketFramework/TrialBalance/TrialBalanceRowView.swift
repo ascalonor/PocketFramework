@@ -44,7 +44,7 @@ extension PocketFramework {
 
 struct TrialBalanceRowView_Previews: PreviewProvider {
     static var previews: some View {
-        var demoRow = PocketFramework.TrialBalanceDataRow()
+        let demoRow = PocketFramework.TrialBalanceDataRow()
         demoRow.Name = "Cash"
         demoRow.TrialBalanceDebit = 6155
         return PocketFramework.TrialBalanceRowView(rowData: demoRow)
