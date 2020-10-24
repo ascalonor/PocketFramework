@@ -11,6 +11,10 @@ import SwiftUI
 extension PocketFramework {
     public struct ColumnSpacer:View {
         
+        public init () {
+            
+        }
+        
         public var body: some View {
             GeometryReader { reader in
                 HStack(spacing:3) {
