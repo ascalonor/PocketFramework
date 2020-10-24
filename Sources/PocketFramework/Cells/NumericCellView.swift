@@ -15,6 +15,14 @@ extension PocketFramework {
             self.text = text
         }
         
+        public init(numValue:Double) {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.usesGroupingSeparator = true
+            formatter.maximumFractionDigits = 2
+            text = formatter.string(from: numValue as NSNumber)!
+        }
+        
         public var body: some View {
             GeometryReader { reader in
                 HStack( spacing:3) {
@@ -30,7 +38,7 @@ extension PocketFramework {
 
 struct NumericCellView_Previews: PreviewProvider {
     static var text:String = "12345.67"
-
+    
     static var previews: some View {
         PocketFramework.NumericCellView(text: text).frame(minHeight:50, maxHeight: 50)
     }
