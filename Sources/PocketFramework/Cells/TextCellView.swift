@@ -11,6 +11,10 @@ extension PocketFramework {
     public struct TextCellView: View {
         var text:String
                 
+        public init(text:String) {
+            self.text = text
+        }
+        
         public var body: some View {
             GeometryReader { reader in
                 HStack( spacing:3) {
