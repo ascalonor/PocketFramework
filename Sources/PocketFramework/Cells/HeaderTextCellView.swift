@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension PocketFramework {
-    struct HeaderTextCellView: View {
+    public struct HeaderTextCellView: View {
         var text:String
         
         public init(text:String) {
