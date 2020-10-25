@@ -8,19 +8,16 @@
 import Foundation
 import SwiftUI
 
-extension PocketFramework {
-    public struct ColumnSpacer:View {
-        
-        public init () {
-            
-        }
-        
+public extension PocketFramework {
+    struct ColumnSpacer: View {
+        public init() {}
+
         public var body: some View {
             GeometryReader { reader in
-                HStack(spacing:3) {
+                HStack(spacing: 3) {
                     Spacer()
-                    Rectangle().frame( minWidth:1, maxWidth: 1, minHeight: reader.size.height + 10)
-                    Rectangle().frame( minWidth:1, maxWidth: 1, minHeight: reader.size.height + 10)
+                    Rectangle().frame(minWidth: 1, maxWidth: 1, minHeight: reader.size.height + 10)
+                    Rectangle().frame(minWidth: 1, maxWidth: 1, minHeight: reader.size.height + 10)
                 }
             }
         }
@@ -29,6 +26,6 @@ extension PocketFramework {
 
 struct ColumnSpacer_Previews: PreviewProvider {
     static var previews: some View {
-        PocketFramework.ColumnSpacer().frame(minHeight:50, maxHeight: 50)
+        PocketFramework.ColumnSpacer().frame(minHeight: 50, maxHeight: 50)
     }
 }

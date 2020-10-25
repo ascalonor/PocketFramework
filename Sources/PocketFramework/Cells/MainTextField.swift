@@ -8,13 +8,12 @@
 import Foundation
 import SwiftUI
 
-extension PocketFramework {
-    public struct MainTextField : View {
-        
+public extension PocketFramework {
+    struct MainTextField: View {
         @State var placeholder: String
         @Binding var text: String
         
-        public init(placeholder:String, text:Binding<String>) {
+        public init(placeholder: String, text: Binding<String>) {
             self._placeholder = State(initialValue: placeholder)
             self._text = text
         }
@@ -23,11 +22,10 @@ extension PocketFramework {
             HStack {
                 Image(systemName: "person").foregroundColor(Color.blue)
                 TextField(placeholder, text: $text)
-                    .font(.system(size: 20, weight:.bold, design:.default))
+                    .font(.system(size: 20, weight: .bold, design: .default))
                     .foregroundColor(Color.blue)
             }.padding()
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth:2))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.blue, lineWidth: 2))
         }
-        
     }
 }
